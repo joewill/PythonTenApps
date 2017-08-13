@@ -1,7 +1,7 @@
 print('---------------------------------------------')
 print('                 HELLO WORLD')
 print('---------------------------------------------')
-print() #Leaves a 
+print() #Leaves a line-break
 
 #in Python we use the underscore for multi-word variables
 user_text = input('What is your name? ') 
