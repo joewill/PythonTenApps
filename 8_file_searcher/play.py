@@ -18,3 +18,7 @@ def fibonacci_co(limit):
     while current < limit:
         current, next = next, next + current
         yield current
+
+
+def test_commit():
+    pass
