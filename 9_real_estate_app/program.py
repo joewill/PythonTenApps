@@ -1,4 +1,6 @@
 import os
+import csv
+from data_types import Purchase
 
 
 def main():
@@ -22,7 +24,14 @@ def get_data_file():
 
 
 def load_file(filename):
-    return []
+    with open(filename, 'r', encoding='utf-8') as fin:
+        reader = csv.DictReader(fin)
+        purchases = []
+        for row in reader:
+            p = Purchase.create_from_dict(row)
+            purchases.append(p)
+
+        return purchases
 
 
 def query_data(data):
