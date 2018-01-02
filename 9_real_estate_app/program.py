@@ -1,5 +1,6 @@
 import os
 import csv
+import statistics
 from data_types import Purchase
 
 
@@ -35,7 +36,35 @@ def load_file(filename):
 
 
 def query_data(data):
-    pass
+    data.sort(key=lambda p: p.price)
+
+    high_purchase = data[-1]
+    print("The most expensive house is ${:,} with {} beds and {} baths.".format(
+        high_purchase.price, high_purchase.beds, high_purchase.baths))
+
+    low_purchase = data[0]
+    print("The least expensive house is ${:,} with {} beds and {} baths.".format(
+        low_purchase.price, low_purchase.beds, low_purchase.baths))
+
+    prices = [
+        p.price  # projection or itmes
+        for p in data  # the set to process
+    ]
+
+    avg_price = statistics.mean(prices)
+    print("The average home price is ${:,}".format(int(avg_price)))
+
+    two_bed_homes = [
+        p  # projection or itmes
+        for p in data  # the set to process
+        if p.beds == 2  # test / condition
+    ]
+
+    avg_price = statistics.mean([p.price for p in two_bed_homes])
+    avg_baths = statistics.mean([p.baths for p in two_bed_homes])
+    avg_sqft = statistics.mean([p.sq__ft for p in two_bed_homes])
+    print("Average two bedroom home is ${:,}, baths={}, sq ft={:,}".format(
+        int(avg_price), round(avg_baths, 1), round(avg_sqft, 1)))
 
 
 if __name__ == '__main__':
