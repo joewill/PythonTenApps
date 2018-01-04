@@ -15,16 +15,7 @@ movies_list = movie_data.get('hits')
 
 movies = []
 for md in movies_list:
-    m = MovieResult(imdb_code=md.get('imdb_code'),
-                    title=md.get('title'),
-                    duration=md.get('duration'),
-                    director=md.get('director'),
-                    year=md.get('year'),
-                    rating=md.get('rating'),
-                    imdb_score=md.get('imdb_score'),
-                    keywords=md.get('keywords'),
-                    genres=md.get('genres')
-                    )
+    m = MovieResult(**md)
     movies.append(m)
 
 print("Found {} movies for search {}".format(len(movies), search))
