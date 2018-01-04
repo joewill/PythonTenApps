@@ -13,10 +13,9 @@ resp.raise_for_status()
 movie_data = resp.json()
 movies_list = movie_data.get('hits')
 
-movies = []
-for md in movies_list:
-    m = MovieResult(**md)
-    movies.append(m)
+movies = [MovieResult(**md)
+          for md in movies_list
+          ]
 
 print("Found {} movies for search {}".format(len(movies), search))
 for m in movies:
